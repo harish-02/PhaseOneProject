@@ -51,32 +51,18 @@ public class AmazonSearch {
 			Select categorySelect = new Select(categoryDropDown);
 			categorySelect.selectByVisibleText(category);
 			
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			
 			WebElement searchBox = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
 			searchBox.sendKeys(searchTerm);
 			
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			
 			WebElement searchButton = driver.findElement(By.xpath("//input[@id='nav-search-submit-button']"));
 			searchButton.click();
 			
 			List<WebElement> resultList = driver.findElements(By.xpath("//*[@data-component-type='s-search-result']"));
 			System.out.println("\nTotal number of results found on the page: " + resultList.size());
-			
-			String resultListCount = String.valueOf(resultList.size());
-			
-			WebElement resultBarText = driver.findElement(By.xpath("//*[@class='a-section a-spacing-small a-spacing-top-small']/span[1]"));
-			System.out.println("\nResult Bar Text: " + resultBarText.getText() + "'" + searchTerm +"'");
-			
-			String resultCountTxt = resultBarText.getText().substring(2, 4);
-			System.out.println("\nResultCountTxt = " + resultCountTxt);
-			
-			if (resultCountTxt.equals(resultListCount)) {
-				System.out.println("\nYes! Result is matching \n");	
-			} else {
-				System.out.println("\nOh no!! Result is not matching \n");
-			}
 			
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			
@@ -92,11 +78,11 @@ public class AmazonSearch {
 			List<WebElement> productNameList = driver.findElements(By.xpath("//*[@data-component-type='s-search-result']//span[@class='a-size-medium a-color-base a-text-normal']"));
 			List<WebElement> productPriceList = driver.findElements(By.xpath("//*[@data-component-type='s-search-result']//span[@class='a-price-whole']"));
 			
-			System.out.println("Product List for Search Keyword [" + searchTerm + "] from Category [" + category + "] \n");
+			System.out.println("\nProduct List for Search Keyword [" + searchTerm + "] from Category [" + category + "] \n");
 		
 			
 			System.out.println("#" + "\t" + "Price" + "\t \t" + "Product Name \n");
-			System.out.println("--------------------------------------------------------- \n");
+			System.out.println("---------------------------------------------------------------------------------------- \n");
 
 			int count = 1;
 
@@ -109,7 +95,7 @@ public class AmazonSearch {
 		}
 		
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			driver.close();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
